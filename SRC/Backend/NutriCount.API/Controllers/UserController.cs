@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NutriCount.Application.UseCases.User.Register;
 using NutriCount.Communication.Request;
 using NutriCount.Communication.Responses;
 
@@ -13,7 +14,9 @@ namespace NutriCount.API.Controllers
         [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status201Created)]
         public IActionResult Regiter(RequestRegisterUserJson request) //função do endpoint
         {
-            return Created();
+            var useCase = new RegisterUserUseCase();
+            var result = useCase.Execute(request);
+            return Created(string.Empty, result);
         }
     }
 }

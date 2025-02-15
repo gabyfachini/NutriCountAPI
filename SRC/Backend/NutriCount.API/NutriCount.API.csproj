@@ -10,4 +10,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\NutriCount.Communication\NutriCount.Communication.csproj" />
+    <ProjectReference Include="..\..\Shared\NutriCount.Exceptions\NutriCount.Exceptions.csproj" />
+    <ProjectReference Include="..\NutriCount.Application\NutriCount.Application.csproj" />
+  </ItemGroup>
+
 </Project>

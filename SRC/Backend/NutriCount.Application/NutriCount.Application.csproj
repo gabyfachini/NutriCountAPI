@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\NutriCount.Communication\NutriCount.Communication.csproj" />
+    <ProjectReference Include="..\..\Shared\NutriCount.Exceptions\NutriCount.Exceptions.csproj" />
+    <ProjectReference Include="..\NutriCount.Domain\NutriCount.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

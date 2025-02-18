@@ -14,9 +14,16 @@ namespace NutriCount.API.Controllers
         [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status201Created)]
         public IActionResult Regiter(RequestRegisterUserJson request) //função do endpoint
         {
-            var useCase = new RegisterUserUseCase();
-            var result = useCase.Execute(request);
-            return Created(string.Empty, result);
+            try
+            {
+                var useCase = new RegisterUserUseCase();
+                var result = useCase.Execute(request);
+                return Created(string.Empty, result);
+            }
+            catch (Exception ex)
+            {
+                //tratamento
+            }
         }
     }
 }

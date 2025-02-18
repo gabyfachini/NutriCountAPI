@@ -1,5 +1,6 @@
 ﻿using NutriCount.Communication.Request;
 using NutriCount.Communication.Responses;
+using NutriCount.Exceptions.ExceptionsBase;
 
 namespace NutriCount.Application.UseCases.User.Register
 {
@@ -22,8 +23,8 @@ namespace NutriCount.Application.UseCases.User.Register
             var result = validator.Validate(request);
             if (result.IsValid == false)
             {
-                var errorMessages = result.Errors.Select(e => e.ErrorMessage);
-                throw new Exception();
+                var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
+                throw new ErrorOnValidationException(errorMessages);
             }
         }
     }

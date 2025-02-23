@@ -10,8 +10,9 @@
 
 namespace NutriCount.Exceptions {
     using System;
-    
-    
+    using System.Collections.Generic;
+
+
     /// <summary>
     ///   Uma classe de recurso de tipo de alta segurança, para pesquisar cadeias de caracteres localizadas etc.
     /// </summary>
@@ -95,5 +96,7 @@ namespace NutriCount.Exceptions {
                 return ResourceManager.GetString("PASSWORD_EMPTY", resourceCulture);
             }
         }
+
+        public static IList<string> UNKNOWN_ERROR { get; set; }
     }
 }

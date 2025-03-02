@@ -17,4 +17,8 @@
     <ProjectReference Include="..\NutriCount.Application\NutriCount.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NovaPasta\" />
+  </ItemGroup>
+
 </Project>

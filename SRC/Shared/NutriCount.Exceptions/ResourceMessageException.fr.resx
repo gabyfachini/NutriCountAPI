@@ -129,4 +129,7 @@
   <data name="EMAIL_INVALID" xml:space="preserve">
     <value>E-mail invalide, veuillez saisir un e-mail valide.</value>
   </data>
+  <data name="UNKNOWN_ERROR" xml:space="preserve">
+    <value>Erreur méconnue.</value>
+  </data>
 </root>

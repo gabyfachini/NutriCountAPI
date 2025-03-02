@@ -1,4 +1,6 @@
-﻿using NutriCount.Communication.Request;
+﻿using NutriCount.Application.Services.AutoMapper;
+using NutriCount.Application.Services.Cryptography;
+using NutriCount.Communication.Request;
 using NutriCount.Communication.Responses;
 using NutriCount.Exceptions.ExceptionsBase;
 
@@ -8,9 +10,18 @@ namespace NutriCount.Application.UseCases.User.Register
     {
         public ResponseRegisteredUserJson Execute(RequestRegisterUserJson request)
         {
+            var criptografiaDeSenha = new PasswordEncripter();
+            var autoMapper = new AutoMapper.MapperConfiguration(options =>
+            {
+                options.AddProfile(new AutoMapping());
+            }).CreateMapper();
+
             Validate(request);
-            //Se a validação for positiva, tem que mapear a request uma entidade
-            //Depois criptografa a senha e salva no banco de dados
+
+            var user = autoMapper.Map<Domain.Entities.User>(request);
+            user.Password = criptografiaDeSenha.Encrypt(request.Password); 
+
+            //salva no banco de dados
 
             return new ResponseRegisteredUserJson
             {

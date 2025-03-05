@@ -2,13 +2,16 @@
 using NutriCount.Application.Services.Cryptography;
 using NutriCount.Communication.Request;
 using NutriCount.Communication.Responses;
+using NutriCount.Domain.Repositories.User;
 using NutriCount.Exceptions.ExceptionsBase;
 
 namespace NutriCount.Application.UseCases.User.Register
 {
     public class RegisterUserUseCase
     {
-        public ResponseRegisteredUserJson Execute(RequestRegisterUserJson request)
+        private readonly IUserWriteOnlyRepository _writeOnlyRepository;
+        private readonly IUserReadOnlyRepository _readOnlyRepository;
+        public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
         {
             var criptografiaDeSenha = new PasswordEncripter();
             var autoMapper = new AutoMapper.MapperConfiguration(options =>
@@ -19,9 +22,9 @@ namespace NutriCount.Application.UseCases.User.Register
             Validate(request);
 
             var user = autoMapper.Map<Domain.Entities.User>(request);
-            user.Password = criptografiaDeSenha.Encrypt(request.Password); 
+            user.Password = criptografiaDeSenha.Encrypt(request.Password);
 
-            //salva no banco de dados
+            await _writeOnlyRepository.Add(user);
 
             return new ResponseRegisteredUserJson
             {

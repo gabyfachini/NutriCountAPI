@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using NutriCount.Domain.Repositories;
 using NutriCount.Domain.Repositories.User;
 using NutriCount.Infrastructure.DataAcess;
 using NutriCount.Infrastructure.DataAcess.Repositories;
@@ -15,7 +16,7 @@ namespace NutriCount.Infrastructure
         }
         private static void AddDbContext_MySqlServer(IServiceCollection services)
         {
-            var connectionString = "Server=localhost;Database= ;Uid= ;Pwd= ;";
+            var connectionString = ""; //arrumar com os dados certos para o bando de dados, não tenho esse banco configurado, fazer depois
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 35));
 
             services.AddDbContext<NutriCountDbContext>(dbContextOptions =>
@@ -25,7 +26,7 @@ namespace NutriCount.Infrastructure
         }
         private static void AddDbContext_sqlServer(IServiceCollection services)
         {
-            var connectionString = "Data SOURCE=DESKTOP-4NNJ20L;Initial Catalog=NutriCount;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;"; 
+            var connectionString = ""; 
 
             services.AddDbContext<NutriCountDbContext>(dbContextOptions =>
             {
@@ -34,6 +35,7 @@ namespace NutriCount.Infrastructure
         }
         private static void AddRepositories(IServiceCollection services)
         {
+            services.AddScoped<IUnitOfWork, IUnitOfWork>();
             services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
             services.AddScoped<IUserReadOnlyRepository, UserRepository>();
         }

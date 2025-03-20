@@ -9,7 +9,7 @@ namespace NutriCount.Infrastructure
 {
     public static class DependencyInjectionExtension
     {
-        public static void AddInsfrastructure (this IServiceCollection services)
+        public static void AddInfrastructure (this IServiceCollection services)
         {
             AddDbContext_MySqlServer(services);
             AddRepositories(services);

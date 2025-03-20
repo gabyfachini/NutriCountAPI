@@ -8,7 +8,7 @@ namespace NutriCount.Application
 {
     public static class DependencyInjectionExtension
     {
-        public static void AddInsfrastructure(this IServiceCollection services)
+        public static void AddApplication(this IServiceCollection services)
         {
             AddPasswordEncripter(services);
             AddAutoMapper(services);

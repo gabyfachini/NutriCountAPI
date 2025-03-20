@@ -1,7 +1,9 @@
 using NutriCount.API.Filters;
 using NutriCount.API.Middleware;
 using NutriCount.Application;
+using NutriCount.Domain.Repositories;
 using NutriCount.Infrastructure;
+using NutriCount.Infrastructure.DataAcess;
 
 var builder = WebApplication.CreateBuilder(args);
 

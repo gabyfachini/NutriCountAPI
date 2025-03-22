@@ -1,22 +1,31 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NutriCount.Domain.Enums;
 using NutriCount.Domain.Repositories;
 using NutriCount.Domain.Repositories.User;
 using NutriCount.Infrastructure.DataAcess;
 using NutriCount.Infrastructure.DataAcess.Repositories;
+using NutriCount.Infrastructure.Extensions;
 
 namespace NutriCount.Infrastructure
 {
     public static class DependencyInjectionExtension
     {
-        public static void AddInfrastructure (this IServiceCollection services)
+        public static void AddInfrastructure (this IServiceCollection services, IConfiguration configuration)
         {
-            AddDbContext_MySqlServer(services);
+            var databaseType = configuration.DatabaseType();
+
+            if (databaseType == DatabaseType.MySql)
+                AddDbContext_MySqlServer(services, configuration);
+            else
+                AddDbContext_sqlServer(services, configuration);
+
             AddRepositories(services);
         }
-        private static void AddDbContext_MySqlServer(IServiceCollection services)
+        private static void AddDbContext_MySqlServer(IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = ""; //arrumar com os dados certos para o bando de dados, não tenho esse banco configurado, fazer depois
+            var connectionString = configuration.ConnectionString();
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 35));
 
             services.AddDbContext<NutriCountDbContext>(dbContextOptions =>
@@ -24,9 +33,9 @@ namespace NutriCount.Infrastructure
                 dbContextOptions.UseMySql(connectionString, serverVersion);
             });
         }
-        private static void AddDbContext_sqlServer(IServiceCollection services)
+        private static void AddDbContext_sqlServer(IServiceCollection services, IConfiguration configuration)
         {
-            var connectionString = ""; 
+            var connectionString = configuration.ConnectionString();
 
             services.AddDbContext<NutriCountDbContext>(dbContextOptions =>
             {

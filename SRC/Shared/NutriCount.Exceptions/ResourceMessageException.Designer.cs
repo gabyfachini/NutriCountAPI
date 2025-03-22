@@ -98,5 +98,6 @@ namespace NutriCount.Exceptions {
         }
 
         public static IList<string> UNKNOWN_ERROR { get; set; }
+        public static string EMAIL_ALREADY_REGISTERED { get; set; }
     }
 }

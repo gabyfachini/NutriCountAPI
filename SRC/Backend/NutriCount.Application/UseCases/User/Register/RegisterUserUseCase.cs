@@ -5,6 +5,7 @@ using NutriCount.Communication.Request;
 using NutriCount.Communication.Responses;
 using NutriCount.Domain.Repositories;
 using NutriCount.Domain.Repositories.User;
+using NutriCount.Exceptions;
 using NutriCount.Exceptions.ExceptionsBase;
 
 namespace NutriCount.Application.UseCases.User.Register
@@ -32,7 +33,7 @@ namespace NutriCount.Application.UseCases.User.Register
 
         public async Task<ResponseRegisteredUserJson> Execute(RequestRegisterUserJson request)
         {
-            Validate(request);
+            await Validate(request);
 
             var user = _mapper.Map<Domain.Entities.User>(request);
             user.Password = _passwordEncripter.Encrypt(request.Password);
@@ -45,10 +46,14 @@ namespace NutriCount.Application.UseCases.User.Register
                 Name = request.Name,
             };
         }
-        private void Validate(RequestRegisterUserJson request)
+        private async Task Validate(RequestRegisterUserJson request)
         {
             var validator = new RegisterUserValidator();
             var result = validator.Validate(request);
+            var emailExist = await _readOnlyRepository.ExistActiveUserWithEmail(request.Email);
+            if (emailExist)
+                result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessageException.EMAIL_ALREADY_REGISTERED));
+
             if (result.IsValid == false)
             {
                 var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();

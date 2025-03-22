@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using AutoMapper;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using NutriCount.Application.Services.AutoMapper;
 using NutriCount.Application.Services.Cryptography;
 using NutriCount.Application.UseCases.User.Register;
@@ -8,9 +10,9 @@ namespace NutriCount.Application
 {
     public static class DependencyInjectionExtension
     {
-        public static void AddApplication(this IServiceCollection services)
+        public static void AddApplication(this IServiceCollection services, IConfiguration configuration)
         {
-            AddPasswordEncripter(services);
+            AddPasswordEncripter(services, configuration);
             AddAutoMapper(services);
             AddUseCases(services);
         }
@@ -26,9 +28,10 @@ namespace NutriCount.Application
         {
             services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
         }
-        private static void AddPasswordEncripter(IServiceCollection services)
+        private static void AddPasswordEncripter(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped(option => new PasswordEncripter());
+            var additionalKey = configuration.GetValue<string>("Settings:Password:AdditionalKey");
+            services.AddScoped(option => new PasswordEncripter(additionalKey!));
         }
     }
 }

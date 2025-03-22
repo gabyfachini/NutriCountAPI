@@ -13,17 +13,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{34A761
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{5808326C-DF05-4C78-AF4A-683A2D2AC914}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NutriCount.API", "SRC\Backend\NutriCount.API\NutriCount.API.csproj", "{7F6C3A9C-E99F-41F2-9867-C88CC80CDF5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriCount.API", "SRC\Backend\NutriCount.API\NutriCount.API.csproj", "{7F6C3A9C-E99F-41F2-9867-C88CC80CDF5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NutriCount.Application", "SRC\Backend\NutriCount.Application\NutriCount.Application.csproj", "{25C55ACC-A1C9-4B29-8EA3-791C4CC4F5C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriCount.Application", "SRC\Backend\NutriCount.Application\NutriCount.Application.csproj", "{25C55ACC-A1C9-4B29-8EA3-791C4CC4F5C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NutriCount.Domain", "SRC\Backend\NutriCount.Domain\NutriCount.Domain.csproj", "{BA1C43BC-9FA8-47B6-BA45-5D70B35AF750}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriCount.Domain", "SRC\Backend\NutriCount.Domain\NutriCount.Domain.csproj", "{BA1C43BC-9FA8-47B6-BA45-5D70B35AF750}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NutriCount.Infrastructure", "SRC\Backend\NutriCount.Infrastructure\NutriCount.Infrastructure.csproj", "{D7317B8C-3DF2-49AD-B5CA-AB3AAFB42D85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriCount.Infrastructure", "SRC\Backend\NutriCount.Infrastructure\NutriCount.Infrastructure.csproj", "{D7317B8C-3DF2-49AD-B5CA-AB3AAFB42D85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NutriCount.Communication", "SRC\Shared\NutriCount.Communication\NutriCount.Communication.csproj", "{9CD1E411-D559-41C0-A3F8-DF1C134715AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriCount.Communication", "SRC\Shared\NutriCount.Communication\NutriCount.Communication.csproj", "{9CD1E411-D559-41C0-A3F8-DF1C134715AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NutriCount.Exceptions", "SRC\Shared\NutriCount.Exceptions\NutriCount.Exceptions.csproj", "{B5640365-0E6C-4C22-8EFD-2DD5EA10C57D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NutriCount.Exceptions", "SRC\Shared\NutriCount.Exceptions\NutriCount.Exceptions.csproj", "{B5640365-0E6C-4C22-8EFD-2DD5EA10C57D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validators.Test", "Tests\Validators.Test\Validators.Test.csproj", "{EDB4A14F-C637-4173-9A63-BA16557CD998}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonTestUtilities", "Tests\CommonTestUtilities\CommonTestUtilities.csproj", "{E77346C1-A498-4447-8DEA-B5AEB05E1941}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +59,14 @@ Global
 		{B5640365-0E6C-4C22-8EFD-2DD5EA10C57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5640365-0E6C-4C22-8EFD-2DD5EA10C57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5640365-0E6C-4C22-8EFD-2DD5EA10C57D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDB4A14F-C637-4173-9A63-BA16557CD998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDB4A14F-C637-4173-9A63-BA16557CD998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDB4A14F-C637-4173-9A63-BA16557CD998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDB4A14F-C637-4173-9A63-BA16557CD998}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E77346C1-A498-4447-8DEA-B5AEB05E1941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E77346C1-A498-4447-8DEA-B5AEB05E1941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E77346C1-A498-4447-8DEA-B5AEB05E1941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E77346C1-A498-4447-8DEA-B5AEB05E1941}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +81,8 @@ Global
 		{D7317B8C-3DF2-49AD-B5CA-AB3AAFB42D85} = {A97F450D-7532-411A-9F2F-9A14418163FB}
 		{9CD1E411-D559-41C0-A3F8-DF1C134715AD} = {34A761E5-B61C-4802-90B3-F30302010B50}
 		{B5640365-0E6C-4C22-8EFD-2DD5EA10C57D} = {34A761E5-B61C-4802-90B3-F30302010B50}
+		{EDB4A14F-C637-4173-9A63-BA16557CD998} = {9CCF0A2F-9B69-41E9-8086-25254C0C9973}
+		{E77346C1-A498-4447-8DEA-B5AEB05E1941} = {9CCF0A2F-9B69-41E9-8086-25254C0C9973}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {502663EF-B813-495A-BF87-2DF906A0AA20}

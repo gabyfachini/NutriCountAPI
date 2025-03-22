@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\SRC\Backend\NutriCount.Application\NutriCount.Application.csproj" />
+    <ProjectReference Include="..\CommonTestUtilities\CommonTestUtilities.csproj" />
   </ItemGroup>
 
   <ItemGroup>

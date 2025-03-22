@@ -1,5 +1,8 @@
 ﻿using Dapper;
+using FluentMigrator.Runner;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using MySqlConnector;
 using NutriCount.Domain.Enums;
 
@@ -7,12 +10,14 @@ namespace NutriCount.Infrastructure.Migrations
 {
     public class DatabaseMigration
     {
-        public static void Migrate(DatabaseType databaseType, string connectionString)
+        public static void Migrate(DatabaseType databaseType, string connectionString, IServiceProvider serviceProvider)
         {
             if (databaseType == DatabaseType.MySql)
                 EnsureDatabaseCreated_MySql(connectionString);
             else
                 EnsureDatabaseCreated_SqlServer(connectionString);
+
+            MigrationDatabase(serviceProvider);
         }
         private static void EnsureDatabaseCreated_MySql(string connectionString)
         {
@@ -40,6 +45,12 @@ namespace NutriCount.Infrastructure.Migrations
             if (records.Any() == false)
                 dbConnection.Execute("CREATE DATABASE {}");
 
+        }
+        private static void MigrationDatabase(IServiceProvider serviceProvider)
+        {
+            var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
+            runner.ListMigrations();
+            runner.MigrateUp();
         }
 
     }

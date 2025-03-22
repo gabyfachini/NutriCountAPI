@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentMigrator.Runner;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NutriCount.Domain.Enums;
@@ -7,6 +8,7 @@ using NutriCount.Domain.Repositories.User;
 using NutriCount.Infrastructure.DataAcess;
 using NutriCount.Infrastructure.DataAcess.Repositories;
 using NutriCount.Infrastructure.Extensions;
+using System.Reflection;
 
 namespace NutriCount.Infrastructure
 {
@@ -17,9 +19,15 @@ namespace NutriCount.Infrastructure
             var databaseType = configuration.DatabaseType();
 
             if (databaseType == DatabaseType.MySql)
+            {
                 AddDbContext_MySqlServer(services, configuration);
+                AddFluentMigrator_MySql(services, configuration);
+            }
             else
+            {
                 AddDbContext_sqlServer(services, configuration);
+                AddFluentMigrator_SqlServer(services, configuration);
+            }
 
             AddRepositories(services);
         }
@@ -47,6 +55,28 @@ namespace NutriCount.Infrastructure
             services.AddScoped<IUnitOfWork, IUnitOfWork>();
             services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
             services.AddScoped<IUserReadOnlyRepository, UserRepository>();
+        }
+        private static void AddFluentMigrator_MySql(IServiceCollection services, IConfiguration configuration)
+        {
+            var connectionString = configuration.ConnectionString();
+            services.AddFluentMigratorCore().ConfigureRunner(options =>
+            {
+                options
+                .AddMySql5()
+                .WithGlobalConnectionString(connectionString)
+                .ScanIn(Assembly.Load("NutriCount.Infrastructure")).For.All();
+            });
+        }
+        private static void AddFluentMigrator_SqlServer(IServiceCollection services, IConfiguration configuration)
+        {
+            var connectionString = configuration.ConnectionString();
+            services.AddFluentMigratorCore().ConfigureRunner(options =>
+            {
+                options
+                .AddSqlServer()
+                .WithGlobalConnectionString(connectionString)
+                .ScanIn(Assembly.Load("NutriCount.Infrastructure")).For.All();
+            });
         }
     }
 }

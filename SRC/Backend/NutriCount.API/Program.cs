@@ -44,6 +44,7 @@ internal class Program
 
         void MigrateDatabase()
         {
+
             var databaseType = builder.Configuration.DatabaseType();
             var connectionString = builder.Configuration.ConnectionString();
 

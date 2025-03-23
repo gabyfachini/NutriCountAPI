@@ -2,7 +2,6 @@
 using FluentMigrator.Runner;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using MySqlConnector;
 using NutriCount.Domain.Enums;
 

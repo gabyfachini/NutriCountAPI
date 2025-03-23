@@ -10,6 +10,7 @@
 - **C#** – Primary programming language  
 - **Entity Framework Core** – ORM for database interactions  
 - **SQL Server** – Database management  
+- **MySQL** – Database management  
 - **Docker** – Containerization  
 - **Azure DevOps** – CI/CD & pipelines  
 - **JWT Authentication** – Secure login and session management  

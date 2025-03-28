@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using NutriCount.Application.Services.AutoMapper;
 using NutriCount.Application.Services.Cryptography;
 using NutriCount.Communication.Request;
 using NutriCount.Communication.Responses;
@@ -17,6 +16,18 @@ namespace NutriCount.Application.UseCases.User.Register
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly PasswordEncripter _passwordEncripter;
+        private IUserWriteOnlyRepository writeRepository;
+        private global::CommonTestUtilities.Repositories.UserReadOnlyRepositoryBuilder readRepository;
+        private PasswordEncripter passwordEncripter;
+        private IMapper mapper;
+        public RegisterUserUseCase(IUserWriteOnlyRepository writeRepository, global::CommonTestUtilities.Repositories.UserReadOnlyRepositoryBuilder readRepository, PasswordEncripter passwordEncripter, IMapper mapper)
+        {
+            this.writeRepository = writeRepository;
+            this.readRepository = readRepository;
+            this.passwordEncripter = passwordEncripter;
+            this.mapper = mapper;
+        }
+
         public RegisterUserUseCase(
             IUserWriteOnlyRepository writeOnlyRepository, 
             IUserReadOnlyRepository readOnlyRepository,

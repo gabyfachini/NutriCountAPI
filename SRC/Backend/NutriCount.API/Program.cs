@@ -2,6 +2,7 @@ using NutriCount.API.Filters;
 using NutriCount.API.Middleware;
 using NutriCount.Application;
 using NutriCount.Infrastructure;
+using NutriCount.Infrastructure.Extensions;
 using NutriCount.Infrastructure.Migrations;
 
 internal class Program

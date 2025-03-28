@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using NutriCount.Domain.Entities;
 
 namespace NutriCount.Infrastructure.DataAcess

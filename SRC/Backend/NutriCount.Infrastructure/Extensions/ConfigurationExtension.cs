@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using NutriCount.Domain.Enums;
 
 namespace NutriCount.Infrastructure.Extensions

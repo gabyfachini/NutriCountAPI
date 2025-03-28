@@ -1,10 +1,8 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NutriCount.Application.Services.AutoMapper;
 using NutriCount.Application.Services.Cryptography;
 using NutriCount.Application.UseCases.User.Register;
-using System.Data;
 
 namespace NutriCount.Application
 {

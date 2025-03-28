@@ -18,6 +18,7 @@
     <ProjectReference Include="..\..\Shared\NutriCount.Communication\NutriCount.Communication.csproj" />
     <ProjectReference Include="..\..\Shared\NutriCount.Exceptions\NutriCount.Exceptions.csproj" />
     <ProjectReference Include="..\NutriCount.Application\NutriCount.Application.csproj" />
+    <ProjectReference Include="..\NutriCount.Domain\NutriCount.Domain.csproj" />
     <ProjectReference Include="..\NutriCount.Infrastructure\NutriCount.Infrastructure.csproj" />
   </ItemGroup>
 

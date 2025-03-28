@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using NutriCount.Communication.Responses;
 using NutriCount.Exceptions;
 using NutriCount.Exceptions.ExceptionsBase;
-using System;
 using System.Net;
 
 namespace NutriCount.API.Filters

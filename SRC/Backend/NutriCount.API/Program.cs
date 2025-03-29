@@ -1,3 +1,4 @@
+using Microsoft.Identity.Client;
 using NutriCount.API.Filters;
 using NutriCount.API.Middleware;
 using NutriCount.Application;
@@ -52,6 +53,10 @@ internal class Program
             var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
 
             DatabaseMigration.Migrate(databaseType, connectionString, serviceScope.ServiceProvider);
+        } 
+        public partial class Program
+        {
+
         }
     }
 }

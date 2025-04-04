@@ -52,7 +52,7 @@ namespace NutriCount.Infrastructure
         }
         private static void AddRepositories(IServiceCollection services)
         {
-            services.AddScoped<IUnitOfWork, IUnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserWriteOnlyRepository, UserRepository>();
             services.AddScoped<IUserReadOnlyRepository, UserRepository>();
         }

@@ -1,4 +1,5 @@
 ﻿using CommonTestUtilities.Requests;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net.Http.Json;
 
@@ -11,6 +12,8 @@ namespace WebApi.Test.User.Register
         {
             _httpClient = factory.CreateClient();
         }
+
+        public object HttpStatusCode { get; private set; }
 
         [Fact]
         public async Task Sucess()

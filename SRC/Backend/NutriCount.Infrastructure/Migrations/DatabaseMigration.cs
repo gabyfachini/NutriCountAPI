@@ -49,7 +49,7 @@ namespace NutriCount.Infrastructure.Migrations
         {
             var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
             runner.ListMigrations();
-            runner.MigrateUp();
+            /*runner.MigrateUp();*/
         }
 
     }

@@ -2,13 +2,14 @@
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net.Http.Json;
+using System.Text.Json;
 
 namespace WebApi.Test.User.Register
 {
-    public class RegisterUserTest : IClassFixture<WebApplicationFactory<Program>> //cada classe é executada em um servidor
+    public class RegisterUserTest : IClassFixture<WebApplicationFactory> //cada classe é executada em um servidor
     {
         private readonly HttpClient _httpClient;
-        public RegisterUserTest(WebApplicationFactory<Program> factory)
+        public RegisterUserTest(WebApplicationFactory factory)
         {
             _httpClient = factory.CreateClient();
         }
@@ -20,7 +21,15 @@ namespace WebApi.Test.User.Register
         {
             var request = RequestRegisterUserJsonBuilder.Build();
 
-            await _httpClient.PostAsJsonAsync("User", request);
+            var response = await _httpClient.PostAsJsonAsync("User", request);
+
+            response.StatusCode().Should().Be(HttpStatusCode.Created);
+
+            await using var responseBody = await response.Content.ReadAsStreamAsync();
+
+            var responseData = await JsonDocument.ParseAsync(responseBody);
+
+            responseData.RootElement.GetProperty("name").GetString().Should().NotBeNullOrWhiteSpace().And.Be(request.Name);
         }
     }
 }

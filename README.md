@@ -20,9 +20,20 @@
 
 ---
 
+## 📱 App Preview
+
+![image](https://github.com/user-attachments/assets/a932644b-81ea-4e30-b568-91f01b37e3eb)
+
+
+**Macronutrient Calculation:**
+   - The API auto-calculates nutritional data based on food inputs.
+   - Users receive feedback and daily summaries.
+
+---
+
 ## 🛠 Setup & Installation  
 
-### 1️⃣ Clone the Repository  
+### Clone the Repository  
 
 ```bash
 git clone https://github.com/gabyfachini/NutriCountAPI.git

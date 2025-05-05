@@ -19,6 +19,8 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddApplication(builder.Configuration);
     builder.Services.AddInfrastructure(builder.Configuration);
 
+    builder.Services.AddRouting(options => options.LowercaseUrls = true); //deixa as URLs minúsculas, que é o padrão
+
     var app = builder.Build();
 
     // Configure the HTTP request pipeline.

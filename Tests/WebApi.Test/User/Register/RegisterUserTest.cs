@@ -1,6 +1,5 @@
 ﻿using CommonTestUtilities.Requests;
 using FluentAssertions;
-using Microsoft.AspNetCore.Mvc.Testing;
 using NutriCount.Exceptions;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -10,6 +9,8 @@ namespace WebApi.Test.User.Register
 {
     public class RegisterUserTest : IClassFixture<WebApplicationFactory> //cada classe é executada em um servidor
     {
+        private readonly string method = "user";
+
         private readonly HttpClient _httpClient;
         public RegisterUserTest(WebApplicationFactory factory)
         {

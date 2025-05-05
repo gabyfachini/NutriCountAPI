@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using NutriCount.Domain.Extensions;
+using System.Globalization;
 
 namespace NutriCount.API.Middleware
 {
@@ -12,16 +13,16 @@ namespace NutriCount.API.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-            var supportedLanguages = CultureInfo.GetCultures(CultureTypes.AllCultures);
+            var supportedLanguages = CultureInfo.GetCultures(CultureTypes.AllCultures).ToList();
 
             var requestedCulture = context.Request.Headers.AcceptLanguage.FirstOrDefault();
 
             var cultureInfo = new CultureInfo("en");
 
-            if (string.IsNullOrWhiteSpace(requestedCulture) == false 
-                && supportedLanguages.Any(c => c.Name.Equals(requestedCulture)))
+            if (string.IsNullOrWhiteSpace(requestedCulture).IsFalse()
+                && supportedLanguages.Exists(c => c.Name.Equals(requestedCulture)))
             {
-                cultureInfo = new CultureInfo("en");
+                cultureInfo = new CultureInfo(requestedCulture!);
             }
 
             CultureInfo.CurrentCulture = cultureInfo;

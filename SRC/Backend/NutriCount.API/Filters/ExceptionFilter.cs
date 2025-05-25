@@ -18,7 +18,12 @@ namespace NutriCount.API.Filters
         }
         private static void HandProjectException(ExceptionContext context)
         {
-            if(context.Exception is ErrorOnValidationException)
+            if (context.Exception is InvalidLoginException)
+            {
+                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                context.Result = new UnauthorizedObjectResult(new ResponseErrorJson(context.Exception.Message));
+            }
+            else if (context.Exception is ErrorOnValidationException)
             {
                 var exception = context.Exception as ErrorOnValidationException;
 

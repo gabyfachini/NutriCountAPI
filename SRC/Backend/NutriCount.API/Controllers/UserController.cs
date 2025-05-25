@@ -5,9 +5,7 @@ using NutriCount.Communication.Responses;
 
 namespace NutriCount.API.Controllers
 {
-    [Route("[controller]")]
-    [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : NutriCountBaseController
     {
         [HttpPost] // Define que este endpoint responde a requisições POST
         [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status201Created)] //O statuscode é o retorno do endpoint quando bem sucedido 

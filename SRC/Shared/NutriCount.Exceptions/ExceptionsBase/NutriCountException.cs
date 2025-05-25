@@ -2,5 +2,6 @@
 {
     public class NutriCountException : SystemException
     {
+        public NutriCountException(string message):base(message) { }    
     }
 }

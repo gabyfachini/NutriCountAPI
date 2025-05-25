@@ -5,9 +5,11 @@ using Microsoft.Extensions.DependencyInjection;
 using NutriCount.Domain.Enums;
 using NutriCount.Domain.Repositories;
 using NutriCount.Domain.Repositories.User;
+using NutriCount.Domain.Security.Tokens;
 using NutriCount.Infrastructure.DataAcess;
 using NutriCount.Infrastructure.DataAcess.Repositories;
 using NutriCount.Infrastructure.Extensions;
+using NutriCount.Infrastructure.Secutiry.Tokens.Access.Generator;
 using System.Reflection;
 
 namespace NutriCount.Infrastructure
@@ -17,6 +19,8 @@ namespace NutriCount.Infrastructure
         public static void AddInfrastructure (this IServiceCollection services, IConfiguration configuration)
         {
             AddRepositories(services);
+            AddTokens(services, configuration);
+
             if (configuration.IsUnitTestEnviroment())
                 return;
             
@@ -81,6 +85,13 @@ namespace NutriCount.Infrastructure
                 .WithGlobalConnectionString(connectionString)
                 .ScanIn(Assembly.Load("NutriCount.Infrastructure")).For.All();
             });
+        }
+        private static void AddTokens(IServiceCollection services, IConfiguration configuration)
+        {
+            var expirationTimeMinutes = configuration.GetValue<uint>("Settings:Jwt:ExpirationTimeMinutes");
+            var signingKey = configuration.GetValue<string>("Settings:Jwt:SigningKey");
+
+            services.AddScoped<IAccessTokenGenerator>(option => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
         }
     }
 }

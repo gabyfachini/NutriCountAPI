@@ -2,6 +2,7 @@
 using NutriCount.Communication.Request;
 using NutriCount.Communication.Responses;
 using NutriCount.Domain.Repositories.User;
+using NutriCount.Domain.Security.Tokens;
 using NutriCount.Exceptions.ExceptionsBase;
 
 namespace NutriCount.Application.UseCases.Login.DoLogin
@@ -10,13 +11,16 @@ namespace NutriCount.Application.UseCases.Login.DoLogin
     {
         private readonly IUserReadOnlyRepository _repository;
         private readonly PasswordEncripter _passwordEncripter;
+        private readonly IAccessTokenGenerator _accessTokenGenerator;
 
         public DoLoginUseCase(
             IUserReadOnlyRepository repository,
+            IAccessTokenGenerator accessTokenGenerator,
             PasswordEncripter passwordEncripter)
         {
             _repository = repository;
             _passwordEncripter = passwordEncripter;
+            _accessTokenGenerator = accessTokenGenerator;
         }
 
         public async Task<ResponseRegisteredUserJson> Execute(RequestLoginJson request)
@@ -27,7 +31,11 @@ namespace NutriCount.Application.UseCases.Login.DoLogin
 
             return new ResponseRegisteredUserJson
             {
-                Name = user.Name
+                Name = user.Name,
+                Tokens = new ResponseTokensJson
+                {
+                    AcessToken = _accessTokenGenerator.Generate(user.UserIdentifier)
+                }
             };
         }
 

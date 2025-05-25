@@ -8,8 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NutriCount.Exceptions {
-    using System;
+namespace NutriCount.Exceptions
+{
     using System.Collections.Generic;
 
 
@@ -23,81 +23,116 @@ namespace NutriCount.Exceptions {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResourceMessageException {
-        
+    public class ResourceMessageException
+    {
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
+
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResourceMessageException() {
+        internal ResourceMessageException()
+        {
         }
-        
+
         /// <summary>
         ///   Retorna a instância de ResourceManager armazenada em cache usada por essa classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
+        public static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.ReferenceEquals(resourceMan, null))
+                {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("NutriCount.Exceptions.ResourceMessageException", typeof(ResourceMessageException).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Substitui a propriedade CurrentUICulture do thread atual para todas as
         ///   pesquisas de recursos que usam essa classe de recurso de tipo de alta segurança.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
-            get {
+        public static global::System.Globalization.CultureInfo Culture
+        {
+            get
+            {
                 return resourceCulture;
             }
-            set {
+            set
+            {
                 resourceCulture = value;
             }
         }
-        
+
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a The email cannot be empty..
         /// </summary>
-        public static string EMAIL_EMPTY {
-            get {
+        public static string EMAIL_EMPTY
+        {
+            get
+            {
                 return ResourceManager.GetString("EMAIL_EMPTY", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Invalid email, please enter a valid email..
         /// </summary>
-        public static string EMAIL_INVALID {
-            get {
+        public static string EMAIL_INVALID
+        {
+            get
+            {
                 return ResourceManager.GetString("EMAIL_INVALID", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a The name cannot be empty..
         /// </summary>
-        public static string NAME_EMPTY {
-            get {
+        public static string NAME_EMPTY
+        {
+            get
+            {
                 return ResourceManager.GetString("NAME_EMPTY", resourceCulture);
             }
         }
-        
+
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a The password must be greater than 6 characters..
         /// </summary>
-        public static string PASSWORD_EMPTY {
-            get {
+        public static string PASSWORD_EMPTY
+        {
+            get
+            {
                 return ResourceManager.GetString("PASSWORD_EMPTY", resourceCulture);
             }
         }
 
-        public static IList<string> UNKNOWN_ERROR { get; set; }
-        public static string EMAIL_ALREADY_REGISTERED { get; set; }
+        public static string UNKNOWN_ERROR
+        {
+            get
+            {
+                return ResourceManager.GetString("UNKNOWN_ERROR", resourceCulture);
+            }
+        }
+        public static string EMAIL_ALREADY_REGISTERED
+        {
+            get
+            {
+                return ResourceManager.GetString("EMAIL_ALREADY_REGISTERED", resourceCulture);
+            }
+        }
+        public static string EMAIL_OR_PASSWORD_INVALID
+        {
+            get
+            {
+                return ResourceManager.GetString("EMAIL_OR_PASSWORD_INVALID", resourceCulture);
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@ using NutriCount.Exceptions.ExceptionsBase;
 using NutriCount.Exceptions;
 using CommonTestUtilities.Requests;
 using CommonTestUtilities.Entities;
+using CommonTestUtilities.Tokens;
 
 namespace UseCases.Test.Login.DoLogin
 {
@@ -46,11 +47,12 @@ namespace UseCases.Test.Login.DoLogin
         {
             var passwordEncripter = PasswordEncripterBuilder.Build();
             var userReadOnlyRepositoryBuilder = new UserReadOnlyRepositoryBuilder();
+            var acessTokenGenerator = JwtTokenGeneratorBuilder.Build();
 
             if (user is not null)
                 userReadOnlyRepositoryBuilder.GetByEmailAndPassword(user);
 
-            return new DoLoginUseCase(userReadOnlyRepositoryBuilder.Build(), passwordEncripter);
+            return new DoLoginUseCase(userReadOnlyRepositoryBuilder.Build(), acessTokenGenerator, passwordEncripter);
         }
     }
 }

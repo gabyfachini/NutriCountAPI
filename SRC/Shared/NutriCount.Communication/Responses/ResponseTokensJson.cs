@@ -2,7 +2,7 @@
 {
     public class ResponseTokensJson
     {
-        public string Name { get; set; } = string.Empty;
-        public ResponseTokensJson { get; set; } = default!;
+        public string AccessToken { get; set; } = string.Empty;
+        public string RefreshToken { get; set; } = string.Empty;
     }
 }

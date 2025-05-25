@@ -52,7 +52,7 @@ namespace NutriCount.Application.UseCases.User.Register
                 Name = request.Name,
                 Tokens = new ResponseTokensJson
                 {
-                    AcessToken = _accessTokenGenerator.Generate(user.UserIdentifier)
+                    AccessToken = _accessTokenGenerator.Generate(user.UserIdentifier)
                 }
             };
         }

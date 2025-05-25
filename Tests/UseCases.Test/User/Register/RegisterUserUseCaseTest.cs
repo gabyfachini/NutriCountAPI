@@ -1,6 +1,7 @@
 ﻿using CommonTestUtilities.Cryptography;
 using CommonTestUtilities.Repositories;
 using CommonTestUtilities.Requests;
+using CommonTestUtilities.Tokens;
 using FluentAssertions;
 using FluentAssertions.Equivalency.Steps;
 using NutriCount.Application.UseCases.User.Register;
@@ -22,7 +23,9 @@ namespace UseCases.Test.User.Register
             var result = await useCase.Execute(request);
 
             result.Should().NotBeNull();
+            result.Tokens.Should().NotBeNull();
             result.Name.Should().Be(request.Name);
+            result.Tokens.AccessToken.Should().NotBeNullOrEmpty();
         }
 
         [Fact]
@@ -54,6 +57,7 @@ namespace UseCases.Test.User.Register
             var writeRepository = UserWriteOnlyRepositoryBuilder.Build();
             var unitOfWork = UnitOfWorkBuilder.Build();
             var readRepositoryBuilder = new UserReadOnlyRepositoryBuilder();
+            var acessTokenGenerator = JwtTokenGeneratorBuilder.Build();
 
             if (string.IsNullOrEmpty(email) == false)
                 readRepositoryBuilder.ExistActiveUserWithEmail(email);
@@ -62,6 +66,7 @@ namespace UseCases.Test.User.Register
                                                   readRepositoryBuilder.Build(), 
                                                   unitOfWork,
                                                   passwordEncripter,
+                                                  acessTokenGenerator,
                                                   mapper);
         }
     }

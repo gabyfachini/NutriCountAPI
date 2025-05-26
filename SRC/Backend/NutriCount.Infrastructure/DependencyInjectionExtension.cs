@@ -10,6 +10,7 @@ using NutriCount.Infrastructure.DataAcess;
 using NutriCount.Infrastructure.DataAcess.Repositories;
 using NutriCount.Infrastructure.Extensions;
 using NutriCount.Infrastructure.Secutiry.Tokens.Access.Generator;
+using NutriCount.Infrastructure.Secutiry.Tokens.Access.Validator;
 using System.Reflection;
 
 namespace NutriCount.Infrastructure
@@ -92,6 +93,7 @@ namespace NutriCount.Infrastructure
             var signingKey = configuration.GetValue<string>("Settings:Jwt:SigningKey");
 
             services.AddScoped<IAccessTokenGenerator>(option => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
+            services.AddScoped<IAccessTokenValidator>(option => new JwtTokenValidator(signingKey!));
         }
     }
 }

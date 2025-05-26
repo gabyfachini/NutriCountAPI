@@ -2,10 +2,14 @@ using Microsoft.OpenApi.Models;
 using NutriCount.API.Filters;
 using NutriCount.API.Middleware;
 using NutriCount.Application;
+using NutriCount.Domain.Repositories.Token;
+using NutriCount.Domain.Security.Tokens;
 using NutriCount.Infrastructure;
 using NutriCount.Infrastructure.Extensions;
 using NutriCount.Infrastructure.Migrations;
-using System.ComponentModel;
+using NutriCount.Infrastructure.Repositories;
+using NutriCount.Infrastructure.Secutiry.Tokens.Refresh;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddControllers().AddJsonOptions(options =>
     {
-        options.JsonSerializerOptions.Converters.Add(new StringConverter());
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
@@ -30,7 +34,7 @@ var builder = WebApplication.CreateBuilder(args);
             Type = SecuritySchemeType.ApiKey,
             Scheme = "Bearer"
         });
-        options.AddSecurityDefinition("Bearer", new OpenApiSecurityRequirement
+        options.AddSecurityRequirement( new OpenApiSecurityRequirement
          {
             {
                 new OpenApiSecurityScheme
@@ -53,8 +57,10 @@ var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddApplication(builder.Configuration);
     builder.Services.AddInfrastructure(builder.Configuration);
+    builder.Services.AddScoped<IRefreshTokenGenerator, RefreshTokenGenerator>();
+    builder.Services.AddScoped<ITokenRepository, TokenRepository>();
 
-    builder.Services.AddRouting(options => options.LowercaseUrls = true); //deixa as URLs minúsculas, que é o padrão
+builder.Services.AddRouting(options => options.LowercaseUrls = true); //deixa as URLs minúsculas, que é o padrão
 
     var app = builder.Build();
 

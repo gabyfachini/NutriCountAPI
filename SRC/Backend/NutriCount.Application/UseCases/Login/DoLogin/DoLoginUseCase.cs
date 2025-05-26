@@ -1,6 +1,9 @@
 ﻿using NutriCount.Application.Services.Cryptography;
 using NutriCount.Communication.Request;
 using NutriCount.Communication.Responses;
+using NutriCount.Domain.Entities;
+using NutriCount.Domain.Repositories;
+using NutriCount.Domain.Repositories.Token;
 using NutriCount.Domain.Repositories.User;
 using NutriCount.Domain.Security.Tokens;
 using NutriCount.Exceptions.ExceptionsBase;
@@ -12,15 +15,24 @@ namespace NutriCount.Application.UseCases.Login.DoLogin
         private readonly IUserReadOnlyRepository _repository;
         private readonly PasswordEncripter _passwordEncripter;
         private readonly IAccessTokenGenerator _accessTokenGenerator;
+        private readonly IRefreshTokenGenerator _refreshTokenGenerator;
+        private readonly ITokenRepository _tokenRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
         public DoLoginUseCase(
             IUserReadOnlyRepository repository,
             IAccessTokenGenerator accessTokenGenerator,
-            PasswordEncripter passwordEncripter)
+            PasswordEncripter passwordEncripter,
+            IRefreshTokenGenerator refreshTokenGenerator,
+            ITokenRepository tokenRepository,
+            IUnitOfWork unitOfWork)
         {
             _repository = repository;
             _passwordEncripter = passwordEncripter;
             _accessTokenGenerator = accessTokenGenerator;
+            _refreshTokenGenerator = refreshTokenGenerator;
+            _tokenRepository = tokenRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<ResponseRegisteredUserJson> Execute(RequestLoginJson request)
@@ -34,7 +46,7 @@ namespace NutriCount.Application.UseCases.Login.DoLogin
                 Name = user.Name,
                 Tokens = new ResponseTokensJson
                 {
-                    AccessToken = _accessTokenGenerator.Generate(user.UserIdentifier)
+                    AccessToken = _accessTokenGenerator.Generate(user.UserIdentifier),
                 }
             };
         }

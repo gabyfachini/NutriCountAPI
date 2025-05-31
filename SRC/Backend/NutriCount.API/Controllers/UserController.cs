@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NutriCount.API.Attributes;
 using NutriCount.Application.UseCases.User.Register;
 using NutriCount.Communication.Request;
 using NutriCount.Communication.Responses;
 
 namespace NutriCount.API.Controllers
 {
+    [AuthenticatedUser]
     public class UserController : NutriCountBaseController
     {
         [HttpPost] // Define que este endpoint responde a requisições POST

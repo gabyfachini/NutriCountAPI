@@ -44,6 +44,7 @@ namespace WebApi.Test
         public string GetEmail() => _user.Email;
         public string GetPassword() => _password;
         public string GetName() => _user.Name;
+        public Guid GetUserIdentifier() => _user.UserIdentifier;
         
         /*public string GetName() => _user.Name;
         public string GetRefreshToken() => _refreshToken.Value;

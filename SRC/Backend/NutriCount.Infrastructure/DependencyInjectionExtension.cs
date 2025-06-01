@@ -6,6 +6,7 @@ using NutriCount.Domain.Enums;
 using NutriCount.Domain.Repositories;
 using NutriCount.Domain.Repositories.User;
 using NutriCount.Domain.Security.Tokens;
+using NutriCount.Domain.Services.LoggedUser;
 using NutriCount.Infrastructure.DataAcess;
 using NutriCount.Infrastructure.DataAcess.Repositories;
 using NutriCount.Infrastructure.Extensions;
@@ -97,6 +98,6 @@ namespace NutriCount.Infrastructure
             services.AddScoped<IAccessTokenGenerator>(option => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
             services.AddScoped<IAccessTokenValidator>(option => new JwtTokenValidator(signingKey!));
         }
-        private static void AddLoggedUser(IServiceCollection services) => services.AddScoped<ILoggedUser, LoggedUser>();
+        private static void AddLoggedUser(IServiceCollection services) => services.AddScoped<ILoggerUser, LoggedUser>();
     }
 }

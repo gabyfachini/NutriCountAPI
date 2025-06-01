@@ -6,5 +6,6 @@ namespace NutriCount.API.Controllers
     [ApiController]
     public class NutriCountBaseController : ControllerBase
     {
+
     }
 }

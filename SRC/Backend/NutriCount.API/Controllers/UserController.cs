@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NutriCount.API.Attributes;
+using NutriCount.Application.UseCases.User.Profile;
 using NutriCount.Application.UseCases.User.Register;
 using NutriCount.Communication.Request;
 using NutriCount.Communication.Responses;
@@ -17,6 +18,16 @@ namespace NutriCount.API.Controllers
         {
             var result = await useCase.Execute(request);
             return Created(string.Empty, result);
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(ResponseUserProfileJson), StatusCodes.Status200OK)]
+        [AuthenticatedUser]
+        public async Task<IActionResult> GetUserProfile([FromServices] IGetUserProfileUseCase useCase)
+        {
+            var result = await useCase.Execute();
+
+            return Ok(result);
         }
     }
 }

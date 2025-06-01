@@ -1,6 +1,7 @@
 using Microsoft.OpenApi.Models;
 using NutriCount.API.Filters;
 using NutriCount.API.Middleware;
+using NutriCount.API.Token;
 using NutriCount.Application;
 using NutriCount.Domain.Repositories.Token;
 using NutriCount.Domain.Security.Tokens;
@@ -59,8 +60,10 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddInfrastructure(builder.Configuration);
     builder.Services.AddScoped<IRefreshTokenGenerator, RefreshTokenGenerator>();
     builder.Services.AddScoped<ITokenRepository, TokenRepository>();
+    builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
 
-builder.Services.AddRouting(options => options.LowercaseUrls = true); //deixa as URLs minúsculas, que é o padrão
+    builder.Services.AddRouting(options => options.LowercaseUrls = true); //deixa as URLs minúsculas, que é o padrão
+    builder.Services.AddHttpContextAccessor();
 
     var app = builder.Build();
 

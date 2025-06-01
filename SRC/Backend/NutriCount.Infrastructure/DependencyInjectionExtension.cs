@@ -11,6 +11,7 @@ using NutriCount.Infrastructure.DataAcess.Repositories;
 using NutriCount.Infrastructure.Extensions;
 using NutriCount.Infrastructure.Secutiry.Tokens.Access.Generator;
 using NutriCount.Infrastructure.Secutiry.Tokens.Access.Validator;
+using NutriCount.Infrastructure.Services.LoggedUser;
 using System.Reflection;
 
 namespace NutriCount.Infrastructure
@@ -20,6 +21,7 @@ namespace NutriCount.Infrastructure
         public static void AddInfrastructure (this IServiceCollection services, IConfiguration configuration)
         {
             AddRepositories(services);
+            AddLoggedUser(services);
             AddTokens(services, configuration);
 
             if (configuration.IsUnitTestEnviroment())
@@ -95,5 +97,6 @@ namespace NutriCount.Infrastructure
             services.AddScoped<IAccessTokenGenerator>(option => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
             services.AddScoped<IAccessTokenValidator>(option => new JwtTokenValidator(signingKey!));
         }
+        private static void AddLoggedUser(IServiceCollection services) => services.AddScoped<ILoggedUser, LoggedUser>();
     }
 }

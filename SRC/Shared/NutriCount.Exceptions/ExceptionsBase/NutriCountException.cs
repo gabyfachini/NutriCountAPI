@@ -1,7 +1,12 @@
-﻿namespace NutriCount.Exceptions.ExceptionsBase
+﻿using System.Net;
+
+namespace NutriCount.Exceptions.ExceptionsBase
 {
-    public class NutriCountException : SystemException
+    public abstract class NutriCountException : SystemException
     {
-        public NutriCountException(string message):base(message) { }    
+        public NutriCountException(string message):base(message) { }
+
+        public abstract IList<string> GetErrorMessages();
+        public abstract HttpStatusCode GetStatusCode();
     }
 }

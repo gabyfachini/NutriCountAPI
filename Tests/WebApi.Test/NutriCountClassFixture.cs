@@ -20,7 +20,6 @@ namespace WebApi.Test
 
             return await _httpClient.PostAsJsonAsync(method, request);
         }
-        /*
         protected async Task<HttpResponseMessage> DoPostFormData(
         string method,
         object request,
@@ -52,8 +51,7 @@ namespace WebApi.Test
             }
 
             return await _httpClient.PostAsync(method, multipartContent);
-        }*/
-
+        }
         protected async Task<HttpResponseMessage> DoGet(string method, string token = "", string culture = "en")
         {
             ChangeRequestCulture(culture);
@@ -62,7 +60,7 @@ namespace WebApi.Test
             return await _httpClient.GetAsync(method);
         }
 
-        /*protected async Task<HttpResponseMessage> DoPut(string method, object request, string token, string culture = "en")
+       protected async Task<HttpResponseMessage> DoPut(string method, object request, string token, string culture = "en")
         {
             ChangeRequestCulture(culture);
             AuthorizeRequest(token);
@@ -77,7 +75,6 @@ namespace WebApi.Test
 
             return await _httpClient.DeleteAsync(method);
         }
-        */
         private void ChangeRequestCulture(string culture)
         {
             if (_httpClient.DefaultRequestHeaders.Contains("Accept-Language"))
@@ -93,7 +90,7 @@ namespace WebApi.Test
 
             _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
-        /*
+
         private static void AddListToMultipartContent(
             MultipartFormDataContent multipartContent,
             string propertyName,
@@ -133,6 +130,6 @@ namespace WebApi.Test
 
                 index++;
             }
-        }*/
+        }
     }
 }

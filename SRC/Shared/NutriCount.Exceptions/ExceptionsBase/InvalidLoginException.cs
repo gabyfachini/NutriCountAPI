@@ -8,8 +8,8 @@ namespace NutriCount.Exceptions.ExceptionsBase
         {
         }
 
-        /*public override IList<string> GetErrorMessages() => [Message];
+        public override IList<string> GetErrorMessages() => [Message];
 
-        public override HttpStatusCode GetStatusCode() => HttpStatusCode.Unauthorized;*/
+        public override HttpStatusCode GetStatusCode() => HttpStatusCode.Unauthorized;
     }
 }

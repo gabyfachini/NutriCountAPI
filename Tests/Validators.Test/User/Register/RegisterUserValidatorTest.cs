@@ -1,5 +1,7 @@
 ﻿using CommonTestUtilities.Requests;
+using FluentAssertions;
 using NutriCount.Application.UseCases.User.Register;
+using NutriCount.Exceptions;
 
 namespace Validators.Test.User.Register
 {
@@ -30,7 +32,7 @@ namespace Validators.Test.User.Register
 
             result.IsValid.Should().BeFalse();
             result.Errors.Should().ContainSingle()
-                .And.Contain(e => e.ErrorMessage.Equals(ResouceMessagesException.NAME_EMPTY));
+                .And.Contain(e => e.ErrorMessage.Equals(ResourceMessageException.NAME_EMPTY));
 
         }
 
@@ -46,7 +48,7 @@ namespace Validators.Test.User.Register
 
             result.IsValid.Should().BeFalse();
             result.Errors.Should().ContainSingle()
-                .And.Contain(e => e.ErrorMessage.Equals(ResouceMessagesException.EMAIL_EMPTY));
+                .And.Contain(e => e.ErrorMessage.Equals(ResourceMessageException.EMAIL_EMPTY));
 
         }
 
@@ -66,7 +68,7 @@ namespace Validators.Test.User.Register
 
             result.IsValid.Should().BeFalse();
             result.Errors.Should().ContainSingle()
-                .And.Contain(e => e.ErrorMessage.Equals(ResouceMessagesException.PASSWORD_EMPTY));
+                .And.Contain(e => e.ErrorMessage.Equals(ResourceMessageException.PASSWORD_EMPTY));
 
         }
     }

@@ -1,9 +1,10 @@
-﻿using NutriCount.Application.Services.Cryptography;
+﻿using NutriCount.Domain.Security.Cryptography;
+using NutriCount.Infrastructure.Secutiry.Cryptography;
 
 namespace CommonTestUtilities.Cryptography
 {
     public class PasswordEncripterBuilder
     {
-        public static PasswordEncripter Build() => new("abc1234");
+        public static IPasswordEncripter Build() => new Sha512Encripter("abc1234");
     }
 }

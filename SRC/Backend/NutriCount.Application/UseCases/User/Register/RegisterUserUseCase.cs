@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using NutriCount.Application.Services.Cryptography;
 using NutriCount.Communication.Request;
 using NutriCount.Communication.Responses;
 using NutriCount.Domain.Repositories;
 using NutriCount.Domain.Repositories.User;
+using NutriCount.Domain.Security.Cryptography;
 using NutriCount.Domain.Security.Tokens;
 using NutriCount.Exceptions;
 using NutriCount.Exceptions.ExceptionsBase;
@@ -17,14 +17,14 @@ namespace NutriCount.Application.UseCases.User.Register
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IAccessTokenGenerator _accessTokenGenerator;
-        private readonly PasswordEncripter _passwordEncripter;
+        private readonly IPasswordEncripter _passwordEncripter;
         private IUserWriteOnlyRepository writeRepository;
 
         public RegisterUserUseCase(
             IUserWriteOnlyRepository writeOnlyRepository, 
             IUserReadOnlyRepository readOnlyRepository,
             IUnitOfWork unitOfWork,
-            PasswordEncripter passwordEncripter,
+            IPasswordEncripter passwordEncripter,
             IAccessTokenGenerator accessTokenGenerator,
             IMapper mapper)
         {

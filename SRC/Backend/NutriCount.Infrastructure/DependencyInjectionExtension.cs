@@ -5,11 +5,13 @@ using Microsoft.Extensions.DependencyInjection;
 using NutriCount.Domain.Enums;
 using NutriCount.Domain.Repositories;
 using NutriCount.Domain.Repositories.User;
+using NutriCount.Domain.Security.Cryptography;
 using NutriCount.Domain.Security.Tokens;
 using NutriCount.Domain.Services.LoggedUser;
 using NutriCount.Infrastructure.DataAcess;
 using NutriCount.Infrastructure.DataAcess.Repositories;
 using NutriCount.Infrastructure.Extensions;
+using NutriCount.Infrastructure.Secutiry.Cryptography;
 using NutriCount.Infrastructure.Secutiry.Tokens.Access.Generator;
 using NutriCount.Infrastructure.Secutiry.Tokens.Access.Validator;
 using NutriCount.Infrastructure.Services.LoggedUser;
@@ -21,6 +23,7 @@ namespace NutriCount.Infrastructure
     {
         public static void AddInfrastructure (this IServiceCollection services, IConfiguration configuration)
         {
+            AddPasswordEncripter(services, configuration);
             AddRepositories(services);
             AddLoggedUser(services);
             AddTokens(services, configuration);
@@ -99,5 +102,10 @@ namespace NutriCount.Infrastructure
             services.AddScoped<IAccessTokenValidator>(option => new JwtTokenValidator(signingKey!));
         }
         private static void AddLoggedUser(IServiceCollection services) => services.AddScoped<ILoggedUser, LoggedUser>();
+        private static void AddPasswordEncripter(IServiceCollection services, IConfiguration configuration)
+        {
+            var additionalKey = configuration.GetValue<string>("Settings:Password:AdditionalKey");
+            services.AddScoped<IPasswordEncripter>(option => new Sha512Encripter(additionalKey!));
+        }
     }
 }

@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 namespace NutriCount.Infrastructure.Services.LoggedUser
 {
-    public class LoggedUser : ILoggerUser
+    public class LoggedUser : ILoggedUser
     {
         private readonly NutriCountDbContext _dbContext;
         private readonly ITokenProvider _tokenProvider;

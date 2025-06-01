@@ -98,6 +98,6 @@ namespace NutriCount.Infrastructure
             services.AddScoped<IAccessTokenGenerator>(option => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
             services.AddScoped<IAccessTokenValidator>(option => new JwtTokenValidator(signingKey!));
         }
-        private static void AddLoggedUser(IServiceCollection services) => services.AddScoped<ILoggerUser, LoggedUser>();
+        private static void AddLoggedUser(IServiceCollection services) => services.AddScoped<ILoggedUser, LoggedUser>();
     }
 }

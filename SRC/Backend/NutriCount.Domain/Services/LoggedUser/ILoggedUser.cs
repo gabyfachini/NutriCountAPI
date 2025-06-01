@@ -2,7 +2,7 @@
 
 namespace NutriCount.Domain.Services.LoggedUser
 {
-    public interface ILoggerUser
+    public interface ILoggedUser
     {
         public Task<User> User();
     }

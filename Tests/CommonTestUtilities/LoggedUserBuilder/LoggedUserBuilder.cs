@@ -6,9 +6,9 @@ namespace CommonTestUtilities.LoggedUserBuilder
 {
     public class LoggedUserBuilder
     {
-        public static ILoggerUser Build(User user)
+        public static ILoggedUser Build(User user)
         {
-            var mock = new Mock<ILoggerUser>();
+            var mock = new Mock<ILoggedUser>();
 
             mock.Setup(x => x.User()).ReturnsAsync(user);
 

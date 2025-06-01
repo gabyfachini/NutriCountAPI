@@ -5,6 +5,7 @@ using NutriCount.Application.Services.Cryptography;
 using NutriCount.Application.UseCases.Login.DoLogin;
 using NutriCount.Application.UseCases.User.Profile;
 using NutriCount.Application.UseCases.User.Register;
+using NutriCount.Application.UseCases.User.Update;
 
 namespace NutriCount.Application
 {
@@ -29,6 +30,7 @@ namespace NutriCount.Application
             services.AddScoped<IRegisterUserUseCase, RegisterUserUseCase>();
             services.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
             services.AddScoped<IGetUserProfileUseCase, GetUserProfileUseCase>();
+            services.AddScoped<IUpdateUserUseCase, UpdateUserUseCase>();
         }
         private static void AddPasswordEncripter(IServiceCollection services, IConfiguration configuration)
         {

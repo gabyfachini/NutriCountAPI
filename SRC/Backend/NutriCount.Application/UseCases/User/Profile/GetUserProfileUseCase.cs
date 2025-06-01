@@ -6,10 +6,10 @@ namespace NutriCount.Application.UseCases.User.Profile
 {
     public class GetUserProfileUseCase : IGetUserProfileUseCase
     {
-        private readonly ILoggerUser _loggedUser;
+        private readonly ILoggedUser _loggedUser;
         private readonly IMapper _mapper;
 
-        public GetUserProfileUseCase(ILoggerUser loggedUser, IMapper mapper)
+        public GetUserProfileUseCase(ILoggedUser loggedUser, IMapper mapper)
         {
             _loggedUser = loggedUser;
             _mapper = mapper;

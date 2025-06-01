@@ -2,6 +2,7 @@
 using NutriCount.API.Attributes;
 using NutriCount.Application.UseCases.User.Profile;
 using NutriCount.Application.UseCases.User.Register;
+using NutriCount.Application.UseCases.User.Update;
 using NutriCount.Communication.Request;
 using NutriCount.Communication.Responses;
 
@@ -28,6 +29,19 @@ namespace NutriCount.API.Controllers
             var result = await useCase.Execute();
 
             return Ok(result);
+        }
+
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+        [AuthenticatedUser]
+        public async Task<IActionResult> Update(
+        [FromServices] IUpdateUserUseCase useCase,
+        [FromBody] RequestUpdateUserJson request)
+        {
+            await useCase.Execute(request);
+
+            return NoContent();
         }
     }
 }

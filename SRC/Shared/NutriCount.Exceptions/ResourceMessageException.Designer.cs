@@ -148,5 +148,19 @@ namespace NutriCount.Exceptions
                 return ResourceManager.GetString("USER_WITHOUT_PERMISSION_ACCESS_RESOURCE", resourceCulture);
             }
         }
+        public static string INVALID_PASSWORD
+        {
+            get
+            {
+                return ResourceManager.GetString("INVALID_PASSWORD", resourceCulture);
+            }
+        }
+        public static string PASSWORD_DIFFERENT_CURRENT_PASSWORD
+        {
+            get
+            {
+                return ResourceManager.GetString("PASSWORD_DIFFERENT_CURRENT_PASSWORD", resourceCulture);
+            }
+        }
     }
 }

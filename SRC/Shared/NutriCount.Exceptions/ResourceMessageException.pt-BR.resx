@@ -144,4 +144,10 @@
   <data name="USER_WITHOUT_PERMISSION_ACCESS_RESOURCE" xml:space="preserve">
     <value>Você não pode acessar este recurso.</value>
   </data>
+  <data name="INVALID_PASSWORD" xml:space="preserve">
+    <value>A senha deve ter mais de 6 caracteres</value>
+  </data>
+  <data name="PASSWORD_DIFFERENT_CURRENT_PASSWORD" xml:space="preserve">
+    <value>A senha que você digitou é diferente da senha atual.</value>
+  </data>
 </root>

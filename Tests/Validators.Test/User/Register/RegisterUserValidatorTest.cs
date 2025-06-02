@@ -71,5 +71,20 @@ namespace Validators.Test.User.Register
                 .And.Contain(e => e.ErrorMessage.Equals(ResourceMessageException.PASSWORD_EMPTY));
 
         }
+        [Fact]
+        public void Error_Password_Empty()
+        {
+            var validator = new RegisterUserValidator();
+
+            var request = RequestRegisterUserJsonBuilder.Build();
+            request.Password = string.Empty;
+
+            var result = validator.Validate(request);
+
+            result.IsValid.Should().BeFalse();
+            result.Errors.Should().ContainSingle()
+                .And.Contain(e => e.ErrorMessage.Equals(ResourceMessageException.PASSWORD_EMPTY));
+
+        }
     }
 }

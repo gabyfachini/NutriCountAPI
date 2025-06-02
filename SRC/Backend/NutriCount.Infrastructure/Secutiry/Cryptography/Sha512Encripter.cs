@@ -17,13 +17,18 @@ namespace NutriCount.Infrastructure.Secutiry.Cryptography
             var hashBytes = SHA512.HashData(bytes);
             return StringBytes(hashBytes);
         }
+        public bool IsValid(string password, string passwordHash)
+        {
+            var encryptedPassword = Encrypt(password);
+            return encryptedPassword.Equals(passwordHash, StringComparison.OrdinalIgnoreCase);
+        }
         private static string StringBytes(byte[] bytes)
         {
             var sb = new StringBuilder();
             foreach (byte b in bytes)
             {
                 var hex = b.ToString("x2");
-                sb.Append(b);
+                sb.Append(hex);
             }
             return sb.ToString();
         }

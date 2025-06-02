@@ -1,8 +1,10 @@
 ﻿using NutriCount.Communication.Request;
+using NutriCount.Domain.Extensions;
 using NutriCount.Domain.Repositories;
 using NutriCount.Domain.Repositories.User;
 using NutriCount.Domain.Security.Cryptography;
 using NutriCount.Domain.Services.LoggedUser;
+using NutriCount.Exceptions;
 using NutriCount.Exceptions.ExceptionsBase;
 
 namespace NutriCount.Application.UseCases.User.ChangePassword
@@ -46,7 +48,7 @@ namespace NutriCount.Application.UseCases.User.ChangePassword
             var result = new ChangePasswordValidator().Validate(request);
 
             if (_passwordEncripter.IsValid(request.Password, loggedUser.Password).IsFalse())
-                result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessagesException.PASSWORD_DIFFERENT_CURRENT_PASSWORD));
+                result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessageException.PASSWORD_DIFFERENT_CURRENT_PASSWORD));
 
             if (result.IsValid.IsFalse())
                 throw new ErrorOnValidationException(result.Errors.Select(e => e.ErrorMessage).ToList());

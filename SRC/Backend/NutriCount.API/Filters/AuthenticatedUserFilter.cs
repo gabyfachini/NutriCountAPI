@@ -6,16 +6,17 @@ using NutriCount.Domain.Repositories.User;
 using NutriCount.Domain.Security.Tokens;
 using NutriCount.Exceptions.ExceptionsBase;
 using NutriCount.Exceptions;
+using NutriCount.Domain.Extensions;
 
 namespace NutriCount.API.Filters
 {
     public class AuthenticatedUserFilter: IAsyncAuthorizationFilter
     {
-        private readonly IAccessTokenValidator _acessTokenValidator;
+        private readonly IAccessTokenValidator _accessTokenValidator;
         private readonly IUserReadOnlyRepository _repository;
         public AuthenticatedUserFilter(IAccessTokenValidator acessTokenValidator, IUserReadOnlyRepository repository)
         {
-            _acessTokenValidator = acessTokenValidator;
+            _accessTokenValidator = acessTokenValidator;
             _repository = repository;
         }
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
@@ -23,11 +24,13 @@ namespace NutriCount.API.Filters
             try
             {
                 var token = TokenOnRequest(context);
-                var userIdentifier = _acessTokenValidator.ValidateAndGetUserIdentifier(token);
+
+                var userIdentifier = _accessTokenValidator.ValidateAndGetUserIdentifier(token);
+
                 var exist = await _repository.ExistActiveUserWithIdentifier(userIdentifier);
-                if (exist == false)
+                if (exist.IsFalse())
                 {
-                    throw new NutriCountException(ResourceMessageException.USER_WITHOUT_PERMISSION_ACCESS_RESOURCE);
+                    throw new UnauthorizedException(ResourceMessageException.USER_WITHOUT_PERMISSION_ACCESS_RESOURCE);
                 }
             }
             catch (SecurityTokenExpiredException)
@@ -49,10 +52,11 @@ namespace NutriCount.API.Filters
         private static string TokenOnRequest(AuthorizationFilterContext context)
         {
             var authentication = context.HttpContext.Request.Headers.Authorization.ToString();
-            if (string.IsNullOrEmpty(authentication))
+            if (string.IsNullOrWhiteSpace(authentication))
             {
-                throw new NutriCountException(ResourceMessageException.NO_TOKEN);
+                throw new UnauthorizedException(ResourceMessageException.NO_TOKEN);
             }
+
             return authentication["Bearer ".Length..].Trim();
         }
     }

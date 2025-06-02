@@ -1,4 +1,6 @@
-﻿namespace WebApi.Test.InlineData
+﻿using System.Collections;
+
+namespace WebApi.Test.InlineData
 {
     public class CultureInlineDataTest : IEnumerable<object[]>
     {
@@ -11,5 +13,10 @@
         }
 
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,6 +6,6 @@ namespace NutriCount.API.Controllers
     [ApiController]
     public class NutriCountBaseController : ControllerBase
     {
-
+        //Não deveria ter código de não autenticação aqui ?
     }
 }

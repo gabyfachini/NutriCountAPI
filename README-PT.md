@@ -73,19 +73,5 @@
 
 ---
 
-## 📦 Tecnologias Utilizadas
-
-- **.NET Core**  
-- **C#**  
-- **Entity Framework Core**  
-- **SQL Server / MySQL**  
-- **Docker**  
-- **RabbitMQ**  
-- **JWT Authentication & Refresh Tokens**  
-- **SonarCloud / SonarQube**  
-- **Azure DevOps**  
-- **FluentValidation**  
----
-
 ## 🤝 Contribuindo
 Contribuições são bem-vindas! Abra uma issue, sugira melhorias ou envie seu pull request.

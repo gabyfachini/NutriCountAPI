@@ -24,18 +24,54 @@
 
 ![image](https://github.com/user-attachments/assets/a932644b-81ea-4e30-b568-91f01b37e3eb)
 
-
 **Macronutrient Calculation:**
-   - The API auto-calculates nutritional data based on food inputs.
-   - Users receive feedback and daily summaries.
+- The API automatically calculates nutritional data based on the foods entered.
+- Users receive daily feedback and summaries.
 
 ---
 
-## 🛠 Setup & Installation  
+## 🚀 Features
 
-### Clone the Repository  
+- ✅ User registration and authentication with JWT and Refresh Tokens
+- ✅ Authentication via Google Login
+- ✅ Food database with automatic calculation of macronutrients
+- ✅ Creation of a food diary with personalized nutritional monitoring
+- ✅ Consultation of nutritional data of registered foods
+- ✅ Editing and deleting food records
+- ✅ Automatic calculation of calories, proteins, carbohydrates and fats
+- ✅ Daily summary panel (planned)
+- ✅ Generation of nutritional reports (planned)
+- ✅ API built following Clean Architecture and Domain-Driven Design
+- ✅ Data validation with FluentValidation
+- ✅ Secure authentication and session management with JWT and Refresh Token
+- ✅ Messaging implementation with RabbitMQ
+- ✅ Integration with Docker for containerization
+- ✅ Integration with SonarCloud/SonarQube for code quality analysis
+- ✅ CI/CD pipelines using Azure DevOps
+- ✅ Unit tests and integration tests
 
-```bash
-git clone https://github.com/gabyfachini/NutriCountAPI.git
-cd NutriCountAPI
+---
 
+## 📚 What You Will Learn in This Project
+
+- Domain-Driven Design (DDD)
+- SOLID Principles
+- Clean Code
+- Dependency Injection
+- Unit and Integration Tests
+- CI/CD with Azure DevOps
+- Automated Pipelines
+- Docker and Containerization
+- Database Migrations
+- JWT Authentication and Refresh Tokens
+- Social Login with Google
+- Messaging with RabbitMQ
+- Validation with FluentValidation
+- Quality Analysis with SonarCloud/SonarQube
+- Git & GitFlow
+- Agile SCRUM Methodology
+
+---
+
+## 🤝 Contributing
+Contributions are welcome! Open an issue, suggest improvements or submit your pull request.

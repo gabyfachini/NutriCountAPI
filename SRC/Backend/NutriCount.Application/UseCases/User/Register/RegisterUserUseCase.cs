@@ -18,7 +18,7 @@ namespace NutriCount.Application.UseCases.User.Register
         private readonly IMapper _mapper;
         private readonly IAccessTokenGenerator _accessTokenGenerator;
         private readonly IPasswordEncripter _passwordEncripter;
-        private IUserWriteOnlyRepository writeRepository;
+        private IUserWriteOnlyRepository _writeRepository;
 
         public RegisterUserUseCase(
             IUserWriteOnlyRepository writeOnlyRepository, 

@@ -20,7 +20,7 @@ namespace NutriCount.API.Controllers
             [FromServices] IRegisterFoodUseCase useCase,
             [FromBody] RequestFoodRegisterJson request)
         {
-            var result = await useCase.Execute(request); //Analisar
+            var result = await useCase.Execute(request); 
             return Created(string.Empty, result);
         }
 
@@ -31,7 +31,7 @@ namespace NutriCount.API.Controllers
             [FromServices] IGetFoodByIdUseCase useCase, 
             [FromRoute] int id)
         {
-            var result = await useCase.Execute(id); //Analisar
+            var result = await useCase.Execute(id); 
 
             if (result is null)
                 return NotFound();
@@ -44,7 +44,7 @@ namespace NutriCount.API.Controllers
         public async Task<IActionResult> GetAll(
             [FromServices] IGetAllFoodsUseCase useCase) 
         {
-            var result = await useCase.Execute(); //Analisar
+            var result = await useCase.Execute(); 
             return Ok(result);
         }
 
@@ -57,7 +57,7 @@ namespace NutriCount.API.Controllers
             [FromRoute] int id,
             [FromBody] RequestFoodUpdateJson request)
         {
-            var success = await useCase.Execute(id, request); //Analisar
+            var success = await useCase.Execute(id, request); 
 
             if (!success)
                 return NotFound();
@@ -72,7 +72,7 @@ namespace NutriCount.API.Controllers
             [FromServices] IDeleteFoodUseCase useCase, 
             [FromRoute] int id)
         {
-            var success = await useCase.Execute(id); //Analisar
+            var success = await useCase.Execute(id); 
 
             if (!success)
                 return NotFound();

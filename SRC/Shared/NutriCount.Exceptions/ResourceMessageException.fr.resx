@@ -150,4 +150,7 @@
   <data name="PASSWORD_DIFFERENT_CURRENT_PASSWORD" xml:space="preserve">
     <value>Le mot de passe saisi est différent du mot de passe actuel.</value>
   </data>
+  <data name="ID_EMPTY" xml:space="preserve">
+    <value>Le ID ne peut pas être vide.</value>
+  </data>
 </root>

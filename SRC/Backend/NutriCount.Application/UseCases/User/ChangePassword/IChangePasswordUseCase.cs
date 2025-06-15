@@ -1,6 +1,4 @@
-﻿using NutriCount.Communication.Request;
-
-namespace NutriCount.Application.UseCases.User.ChangePassword
+﻿namespace NutriCount.Communication.Request
 {
     public interface IChangePasswordUseCase
     {

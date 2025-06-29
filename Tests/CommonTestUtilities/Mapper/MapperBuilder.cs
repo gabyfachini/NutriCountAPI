@@ -7,9 +7,10 @@ namespace UseCases.Test.Mapper
     {
         public static IMapper Build()
         {
+            var idEncripter = idEncripterBuilder.Build();
             return new AutoMapper.MapperConfiguration(options =>
             {
-                options.AddProfile(new AutoMapping());
+                options.AddProfile(new AutoMapping(idEncripter));
             }).CreateMapper();
 
         }

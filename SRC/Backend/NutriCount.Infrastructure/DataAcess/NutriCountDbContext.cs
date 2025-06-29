@@ -10,6 +10,8 @@ namespace NutriCount.Infrastructure.DataAcess
         public object User { get; internal set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
 
+        //Colocar aqui o Db dos alimentos
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(NutriCountDbContext).Assembly);

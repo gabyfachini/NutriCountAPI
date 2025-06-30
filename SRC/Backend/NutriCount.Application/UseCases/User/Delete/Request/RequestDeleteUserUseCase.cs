@@ -1,6 +1,7 @@
 ﻿using NutriCount.Domain.Repositories.User;
 using NutriCount.Domain.Repositories;
 using NutriCount.Domain.Services.LoggedUser;
+using NutriCount.Domain.Services.ServiceBus;
 
 namespace NutriCount.Application.UseCases.User.Delete.Request
 {

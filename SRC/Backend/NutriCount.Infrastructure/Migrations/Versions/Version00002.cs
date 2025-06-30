@@ -3,7 +3,7 @@
 namespace NutriCount.Infrastructure.Migrations.Versions
 {
     [Migration(DatabaseVersions.TABLE_FOODS, "Create table to save the foods' information")]
-    public class Version0000003 : VersionBase
+    public class Version00002 : VersionBase
     {
         private const string FOOD_TABLE_NAME = "Foods";
 

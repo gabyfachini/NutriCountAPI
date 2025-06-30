@@ -21,7 +21,7 @@ namespace NutriCount.Application.UseCases.Food.Register
 
         public async Task<ResponseFoodJson> Execute(RequestFoodRegisterJson request)
         {
-            var food = new Foods
+            var food = new Food
             {
                 Name = request.Name,
                 ServingSize = request.ServingSize,

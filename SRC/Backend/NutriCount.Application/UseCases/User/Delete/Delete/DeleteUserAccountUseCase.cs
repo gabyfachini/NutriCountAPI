@@ -1,5 +1,6 @@
 ﻿using NutriCount.Domain.Repositories;
 using NutriCount.Domain.Repositories.User;
+using NutriCount.Domain.Services.Storage;
 
 namespace NutriCount.Application.UseCases.User.Delete.Delete
 {

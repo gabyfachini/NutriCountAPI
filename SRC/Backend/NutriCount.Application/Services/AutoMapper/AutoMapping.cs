@@ -23,7 +23,7 @@ namespace NutriCount.Application.Services.AutoMapper
         private void DomainToResponse()
         {
             CreateMap<Domain.Entities.User, ResponseUserProfileJson>();
-            CreateMap<Domain.Entities.Foods, ResponseFoodJson>()
+            CreateMap<Domain.Entities.Eating, ResponseFoodJson>()
                 .ForMember(dest => dest.Id, config => config.MapFrom(source => _idEnconder.Encode(source.Id)));
         }
     }

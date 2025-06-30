@@ -14,7 +14,7 @@ namespace NutriCount.Infrastructure.DataAcess.Repositories
         }
 
         // Registrar novo alimento
-        public async Task AddAsync(Foods food)
+        public async Task AddAsync(Eating food)
         {
             await _dbContext.Foods.AddAsync(food);
         }
@@ -29,7 +29,7 @@ namespace NutriCount.Infrastructure.DataAcess.Repositories
         }
 
         // Buscar alimento por ID
-        public async Task<Foods?> GetByIdAsync(int foodId)
+        public async Task<Eating?> GetByIdAsync(int foodId)
         {
             return await _dbContext
                 .Foods
@@ -38,7 +38,7 @@ namespace NutriCount.Infrastructure.DataAcess.Repositories
         }
 
         // Buscar todos os alimentos
-        public async Task<IEnumerable<Foods>> GetAllAsync()
+        public async Task<IEnumerable<Eating>> GetAllAsync()
         {
             return await _dbContext
             .Foods
@@ -47,7 +47,7 @@ namespace NutriCount.Infrastructure.DataAcess.Repositories
         }
 
         // Atualizar alimento
-        public async Task UpdateAsync(Foods food)
+        public async Task UpdateAsync(Eating food)
         {
             _dbContext.Foods.Update(food);
         }

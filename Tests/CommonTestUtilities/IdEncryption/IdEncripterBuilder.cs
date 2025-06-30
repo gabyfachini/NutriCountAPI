@@ -7,7 +7,7 @@
             return new SqidsEncoder<long>(new()
             {
                 MinLength = 5,
-                Alphabet = "asgydagdsabdah"
+                Alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
             });
         }
     }

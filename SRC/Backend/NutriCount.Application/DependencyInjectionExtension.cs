@@ -22,7 +22,7 @@ namespace NutriCount.Application
             var sqids = new SqidsEncoder<long>(new()
             {
                 MinLength = 5,
-                Alphabet = ""
+                Alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
             });
 
             services.AddScoped(option => new AutoMapper.MapperConfiguration(options =>

@@ -13,7 +13,11 @@ namespace NutriCount.API.Controllers
     [Route("api/[controller]")]
     public class FoodController : NutriCountBaseController
     {
-
+        /// <summary>
+        /// Registra um novo alimento no banco de dados.
+        /// </summary>
+        /// <param name="request">Coloque os dados do alimento a ser criado.</param>
+        /// <returns>O alimento foi registrado com seu ID.</returns>
         [HttpPost]
         [ProducesResponseType(typeof(ResponseFoodJson), StatusCodes.Status201Created)]
         public async Task<IActionResult> Register(

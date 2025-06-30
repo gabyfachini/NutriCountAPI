@@ -10,13 +10,21 @@ using NutriCount.Infrastructure.Extensions;
 using NutriCount.Infrastructure.Migrations;
 using NutriCount.Infrastructure.Repositories;
 using NutriCount.Infrastructure.Secutiry.Tokens.Refresh;
+using System.Reflection;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-    // Add services to the container.
+builder.Services.AddSwaggerGen(c =>
+{
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+}); //Habilitando comentários XML na Swagger
 
-    builder.Services.AddControllers().AddJsonOptions(options =>
+// Add services to the container.
+
+builder.Services.AddControllers().AddJsonOptions(options =>
     {
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
     });

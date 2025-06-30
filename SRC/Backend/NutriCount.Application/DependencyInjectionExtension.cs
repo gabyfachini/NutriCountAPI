@@ -17,7 +17,7 @@ namespace NutriCount.Application
             AddUseCases(services);
         }
 
-        private static void AddAutoMapper(IServiceCollection services/*, IConfiguration configuration*/)
+        private static void AddAutoMapper(IServiceCollection services)
         {
             var sqids = new SqidsEncoder<long>(new()
             {

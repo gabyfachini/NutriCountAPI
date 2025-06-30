@@ -21,8 +21,4 @@
     <ProjectReference Include="..\NutriCount.Domain\NutriCount.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UseCases\User\Delete\" />
-  </ItemGroup>
-
 </Project>

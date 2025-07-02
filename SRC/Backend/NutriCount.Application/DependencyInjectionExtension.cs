@@ -5,6 +5,7 @@ using NutriCount.Application.UseCases.Login.DoLogin;
 using NutriCount.Application.UseCases.User.Profile;
 using NutriCount.Application.UseCases.User.Register;
 using NutriCount.Application.UseCases.User.Update;
+using Sqids;
 
 namespace NutriCount.Application
 {
@@ -18,9 +19,15 @@ namespace NutriCount.Application
 
         private static void AddAutoMapper(IServiceCollection services)
         {
+            var sqids = new SqidsEncoder<long>(new()
+            {
+                MinLength = 5,
+                Alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+            });
+
             services.AddScoped(option => new AutoMapper.MapperConfiguration(options =>
             {
-                options.AddProfile(new AutoMapping());
+                options.AddProfile(new AutoMapping(sqids));
             }).CreateMapper());
         }
         private static void AddUseCases(IServiceCollection services)

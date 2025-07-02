@@ -26,4 +26,12 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Food\Delete\" />
+    <Folder Include="Food\Filter\" />
+    <Folder Include="Food\Generate\" />
+    <Folder Include="Food\GetById\" />
+    <Folder Include="Food\Update\" />
+  </ItemGroup>
+
 </Project>

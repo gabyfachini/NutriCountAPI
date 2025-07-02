@@ -40,9 +40,10 @@ namespace NutriCount.API.Filters
                     TokenIsExpired = true,
                 });
             }
-            catch (NutriCountException ex)
+            catch (NutriCountException nutriCountException)
             {
-                context.Result = new UnauthorizedObjectResult(new ResponseErrorJson(ex.Message));
+                context.HttpContext.Response.StatusCode = (int)nutriCountException.GetStatusCode();
+                context.Result = new ObjectResult(new ResponseErrorJson(nutriCountException.GetErrorMessages()));
             }
             catch
             {

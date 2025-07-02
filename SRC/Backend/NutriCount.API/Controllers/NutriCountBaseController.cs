@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
+using NutriCount.Domain.Extensions;
 
 namespace NutriCount.API.Controllers
 {
@@ -6,6 +8,11 @@ namespace NutriCount.API.Controllers
     [ApiController]
     public class NutriCountBaseController : ControllerBase
     {
-        //Não deveria ter código de não autenticação aqui ?
+        protected static bool IsNotAuthenticated(AuthenticateResult authenticate)
+        {
+            return authenticate.Succeeded.IsFalse()
+                || authenticate.Principal is null
+                || authenticate.Principal.Identities.Any(id => id.IsAuthenticated).IsFalse();
+        }
     }
 }

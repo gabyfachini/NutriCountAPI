@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NutriCount.API.Attributes;
+using NutriCount.Application.UseCases.User.Delete.Request;
 using NutriCount.Application.UseCases.User.Profile;
 using NutriCount.Application.UseCases.User.Register;
 using NutriCount.Application.UseCases.User.Update;
@@ -52,6 +53,16 @@ namespace NutriCount.API.Controllers
         [FromBody] RequestChangePasswordJson request)
         {
             await useCase.Execute(request);
+
+            return NoContent();
+        }
+
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [AuthenticatedUser]
+        public async Task<IActionResult> Delete([FromServices] IRequestDeleteUserUseCase useCase)
+        {
+            await useCase.Execute();
 
             return NoContent();
         }

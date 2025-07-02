@@ -150,4 +150,7 @@
   <data name="PASSWORD_DIFFERENT_CURRENT_PASSWORD" xml:space="preserve">
     <value>A senha que você digitou é diferente da senha atual.</value>
   </data>
+  <data name="ID_EMPTY" xml:space="preserve">
+    <value>O ID não pode ser vazio.</value>
+  </data>
 </root>

@@ -28,6 +28,11 @@ namespace NutriCount.API.Controllers
             return Created(string.Empty, result);
         }
 
+        /// <summary>
+        /// Retorna um alimento específico com base no ID fornecido.
+        /// </summary>
+        /// <param name="id">ID do alimento a ser consultado.</param>
+        /// <returns>Os dados do alimento, se encontrado.</returns>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ResponseFoodJson), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -43,6 +48,10 @@ namespace NutriCount.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Retorna todos os alimentos cadastrados no sistema.
+        /// </summary>
+        /// <returns>Lista de alimentos registrados.</returns>
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<ResponseFoodJson>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetAll(
@@ -52,6 +61,12 @@ namespace NutriCount.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Atualiza os dados de um alimento existente.
+        /// </summary>
+        /// <param name="id">ID do alimento que será atualizado.</param>
+        /// <param name="request">Novos dados para atualização do alimento.</param>
+        /// <returns>Confirmação de que o alimento foi atualizado.</returns>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
@@ -69,6 +84,11 @@ namespace NutriCount.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Remove um alimento do banco de dados.
+        /// </summary>
+        /// <param name="id">ID do alimento a ser removido.</param>
+        /// <returns>Confirmação de que o alimento foi excluído.</returns>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

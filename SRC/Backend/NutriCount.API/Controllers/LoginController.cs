@@ -9,6 +9,14 @@ namespace NutriCount.API.Controllers
     [ApiController]
     public class LoginController : NutriCountBaseController
     {
+        /// <summary>
+        /// Realiza o login do usuário com base nas credenciais fornecidas.
+        /// </summary>
+        /// <param name="request">Objeto contendo e-mail e senha do usuário.</param>
+        /// <returns>
+        /// Retorna os dados do usuário autenticado e token de acesso caso o login seja bem-sucedido.
+        /// Retorna erro 401 caso as credenciais estejam incorretas.
+        /// </returns>
         [HttpPost]
         [ProducesResponseType(typeof(ResponseRegisteredUserJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status401Unauthorized)]

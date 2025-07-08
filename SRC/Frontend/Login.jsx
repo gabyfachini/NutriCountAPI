@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import './Login.css';
 
 function Login() {
@@ -11,14 +10,22 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
     try {
-      const response = await axios.post('https://localhost:7094/swagger/index.html', {
-        email,
-        password
+      const response = await fetch('https://localhost:7094/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
       });
 
-      const token = response.data.token || response.data.accessToken || 'Token recebido!';
-      setToken(token);
+      if (!response.ok) {
+        throw new Error('Login inválido');
+      }
+
+      const data = await response.json();
+      setToken(data.token || data.accessToken || 'Token recebido!');
     } catch (err) {
       console.error(err);
       setError('Email ou senha inválidos');
